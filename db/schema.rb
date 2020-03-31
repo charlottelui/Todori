@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_160148) do
+ActiveRecord::Schema.define(version: 2020_03_31_192045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buckets", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "title"
+    t.boolean "comeplete", default: false
+    t.datetime "due_date"
+    t.bigint "bucket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bucket_id"], name: "index_tasks_on_bucket_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
