@@ -9,4 +9,8 @@ class Task < ApplicationRecord
       errors.add(:due_date, "cannot be in the past")
     end
   end
+
+  def mark_done!
+    self.done = true
+  end
 end
